@@ -1,29 +1,35 @@
 import { ContactForm } from '../components/ContactForm'
 import { Reveal } from '../components/Reveal'
+import { SceneStage } from '../components/SceneStage'
 import { SectionHeading } from '../components/SectionHeading'
 import { contactDetails } from '../data/contact'
 
 export function Contact() {
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="section-pad bg-cream-light/(--section-veil)">
+    <section id="contact" aria-labelledby="contact-heading">
+      <SceneStage>
+        <SectionHeading
+          id="contact-heading"
+          index="06"
+          label="Visit Us"
+          tone="dark"
+          title={
+            <>
+              Let’s Share <em className="font-normal italic">a Cup.</em>
+            </>
+          }
+        />
+        <Reveal delay={0.1}>
+          <p className="mt-7 max-w-md text-lg leading-relaxed text-pretty text-cream/90">
+            Stop by, say hello, or send us a note. There’s always a seat and a fresh cup waiting.
+          </p>
+        </Reveal>
+      </SceneStage>
+      <div className="section-pad rounded-t-[2rem] md:rounded-t-[3rem] bg-cream-light/(--section-veil)">
       <div className="container-x grid gap-14 lg:grid-cols-12 lg:gap-0">
         <div className="lg:col-span-5">
-          <SectionHeading
-            id="contact-heading"
-            index="06"
-            label="Visit Us"
-            title={
-              <>
-                Let’s Share <em className="font-normal italic">a Cup.</em>
-              </>
-            }
-          />
           <Reveal delay={0.1}>
-            <p className="mt-8 max-w-md text-lg leading-relaxed text-pretty text-charcoal/80">
-              Stop by, say hello, or send us a note. There’s always a seat and a fresh cup waiting.
-            </p>
-
-            <ul className="mt-10 border-b border-espresso/15">
+            <ul className="border-b border-espresso/15">
               {contactDetails.map(({ label, value, icon: Icon }) => (
                 <li key={label} className="flex items-center gap-5 border-t border-espresso/15 py-5">
                   <span className="grid size-11 shrink-0 place-items-center rounded-full bg-cream text-coffee">
@@ -46,6 +52,7 @@ export function Contact() {
         <Reveal delay={0.15} className="lg:col-span-6 lg:col-start-7">
           <ContactForm />
         </Reveal>
+      </div>
       </div>
     </section>
   )

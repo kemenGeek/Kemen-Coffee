@@ -1,7 +1,7 @@
 import { MotionConfig } from 'motion/react'
 import { BackToTop } from './components/BackToTop'
 import { Navbar } from './components/Navbar'
-import { SceneBackground } from './components/SceneBackground'
+import { SceneBackdrop } from './components/SceneBackdrop'
 import { SceneProvider } from './components/SceneProvider'
 import { ToastProvider } from './components/ToastProvider'
 import { About } from './sections/About'
@@ -18,7 +18,7 @@ export default function App() {
     <MotionConfig reducedMotion="user">
       <SceneProvider>
         <ToastProvider>
-          <SceneBackground />
+          <SceneBackdrop />
           <a
             href="#main"
             className="sr-only rounded-full bg-cream px-5 py-3 text-sm font-semibold text-espresso focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60]"

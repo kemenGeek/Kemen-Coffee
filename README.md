@@ -11,7 +11,11 @@ There is no backend, database, authentication, API, payment processing, or real 
 - Sticky navigation that turns solid on scroll, with active section indicators and smooth anchor scrolling
 - Full-screen mobile navigation with focus handling and scroll lock
 - Hero with editorial typography and a scroll indicator
-- Cinematic background that crossfades to a different scene when a navigation link is clicked, and is never driven by scrolling
+- A real-time 3D coffee house rendered with WebGL: one continuous building that the camera flies through on a single spline path
+- Clicking a navigation link and scrolling to its section start the same camera journey; the scrollbar never scrubs the animation, and journeys can be reversed or interrupted at any moment
+- Original scenes for each section: a steaming cup among floating beans, a living cafe, an espresso machine pulling a shot, a photo exhibition with a shape-shifting bean sculpture, and a sunset lounge
+- Drinks from the menu on a turntable, which visitors can rotate by dragging or with the arrow keys
+- Depth of field, bloom, chromatic aberration, film grain, fog, dynamic shadows, particles, mouse parallax, and a custom shader transition during flight
 - Six-item signature menu with category filters that run on local data
 - Editorial Experience section with subtle image parallax
 - Masonry-inspired gallery with a lightbox supporting keyboard and swipe navigation
@@ -24,7 +28,8 @@ There is no backend, database, authentication, API, payment processing, or real 
 - Semantic HTML with a skip link and visible keyboard focus states
 - Focus trapping in dialogs, with focus returned on close
 - Meaningful image alt text
-- `prefers-reduced-motion` support that disables smooth scrolling, parallax, and looping animation, and shows still frames instead of background video
+- `prefers-reduced-motion` support that disables smooth scrolling, parallax, and looping animation, and shows still frames instead of the 3D world and background video
+- Devices without WebGL 2, and data-saving connections, keep the photographic scenes, and a lost WebGL context falls back to them too
 - Responsive layouts for desktop, laptop, tablet, and mobile
 
 ## Tech Stack
@@ -34,7 +39,10 @@ There is no backend, database, authentication, API, payment processing, or real 
 | React and TypeScript | Components and type safety |
 | Vite | Development server and production build |
 | Tailwind CSS | Styling and design tokens |
-| Motion for React | Animation |
+| Motion for React | Interface animation |
+| Three.js, React Three Fiber, and Drei | Real-time 3D rendering |
+| Postprocessing | Cinematic camera effects |
+| GSAP | Camera journeys and timed sequences |
 | Lucide React | Interface icons |
 | Google Fonts | Fraunces and Manrope typefaces |
 
@@ -60,7 +68,7 @@ Vite prints the local address when it starts, usually <http://localhost:5173>.
 ## Project Structure
 
 ```text
-public/             Favicon
+public/             Favicon and the compressed 3D world model
 src/
   assets/images/    Optimized local WebP photography
   assets/scenes/    Background video loops and their posters
@@ -70,9 +78,11 @@ src/
   lib/              Small shared helpers
   sections/         Page sections
   styles/           Tailwind theme and global styles
+  world/            The WebGL coffee house: camera path, scenes, shaders, and effects
   App.tsx           Page composition
   main.tsx          Application entry point
   types.ts          Shared TypeScript types
+tools/              Script that generates the 3D world in Blender
 ```
 
 To change copy, prices, or images, edit the files in `src/data/`. Brand colors, fonts, and shadows are defined in `src/styles/index.css`.

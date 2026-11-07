@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Lightbox } from '../components/Lightbox'
 import { Picture } from '../components/Picture'
 import { Reveal } from '../components/Reveal'
+import { SceneStage } from '../components/SceneStage'
 import { SectionHeading } from '../components/SectionHeading'
 import { galleryItems } from '../data/gallery'
 import { cn } from '../lib/cn'
@@ -11,20 +12,23 @@ export function Gallery() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section id="gallery" aria-labelledby="gallery-heading" className="section-pad bg-cream-light/(--section-veil)">
-      <div className="container-x">
+    <section id="gallery" aria-labelledby="gallery-heading">
+      <SceneStage>
         <SectionHeading
           id="gallery-heading"
           index="04"
           label="The Gallery"
+          tone="dark"
           title={
             <>
               Moments at <em className="font-normal italic">KEMEN.</em>
             </>
           }
         />
-
-        <ul className="mt-14 grid auto-rows-[5.25rem] grid-flow-dense grid-cols-2 gap-3 md:auto-rows-[8rem] md:gap-4 lg:mt-20 lg:auto-rows-[clamp(5.5rem,7.75vw,8rem)] lg:grid-cols-4">
+      </SceneStage>
+      <div className="section-pad rounded-t-[2rem] md:rounded-t-[3rem] bg-cream-light/(--section-veil)">
+      <div className="container-x">
+        <ul className="grid auto-rows-[5.25rem] grid-flow-dense grid-cols-2 gap-3 md:auto-rows-[8rem] md:gap-4 lg:auto-rows-[clamp(5.5rem,7.75vw,8rem)] lg:grid-cols-4">
           {galleryItems.map((item, index) => (
             <li key={item.id} className={item.spanClass}>
               <Reveal delay={(index % 4) * 0.06} className="size-full">
@@ -69,6 +73,7 @@ export function Gallery() {
         onChange={setOpenIndex}
         onClose={() => setOpenIndex(null)}
       />
+      </div>
     </section>
   )
 }

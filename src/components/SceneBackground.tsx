@@ -23,11 +23,11 @@ function prefersSavedData() {
   return connection?.saveData === true
 }
 
-function SceneVideo({ scene }: { scene: VideoScene }) {
+function SceneVideo({ scene, stillsOnly }: { scene: VideoScene; stillsOnly: boolean }) {
   const reduceMotion = useReducedMotion()
   const className = cn('size-full object-cover', scene.className)
 
-  if (reduceMotion || prefersSavedData()) {
+  if (stillsOnly || reduceMotion || prefersSavedData()) {
     return <img src={scene.poster} alt="" className={className} />
   }
 
@@ -74,8 +74,12 @@ function SceneCollage({ scene }: { scene: CollageScene }) {
   )
 }
 
-function SceneMedia({ scene }: { scene: Scene }) {
-  return scene.kind === 'video' ? <SceneVideo scene={scene} /> : <SceneCollage scene={scene} />
+function SceneMedia({ scene, stillsOnly }: { scene: Scene; stillsOnly: boolean }) {
+  return scene.kind === 'video' ? (
+    <SceneVideo scene={scene} stillsOnly={stillsOnly} />
+  ) : (
+    <SceneCollage scene={scene} />
+  )
 }
 
 /**
@@ -83,7 +87,7 @@ function SceneMedia({ scene }: { scene: Scene }) {
  * scenes beneath it removed. The picture never dips to the backdrop, and a click that interrupts
  * a transition simply lays the newest scene over whatever is already showing.
  */
-export function SceneBackground() {
+export function SceneBackground({ stillsOnly = false }: { stillsOnly?: boolean }) {
   const { selection } = useScene()
   const reduceMotion = useReducedMotion()
   const [layers, setLayers] = useState([selection])
@@ -110,6 +114,9 @@ export function SceneBackground() {
 
     return () => controls.stop()
   }, [selection.count, reduceMotion, veil])
+
+  // The 3D world drives the veil from CSS once it takes over.
+  useEffect(() => () => void document.documentElement.style.removeProperty('--section-veil'), [])
 
   useEffect(() => {
     for (const url of scenePreloadUrls) {
@@ -139,7 +146,7 @@ export function SceneBackground() {
             transition={{ duration: SCENE_ZOOM_SECONDS, ease: easePremium }}
             className="size-full"
           >
-            <SceneMedia scene={scenes[layer.id]} />
+            <SceneMedia scene={scenes[layer.id]} stillsOnly={stillsOnly} />
           </motion.div>
         </motion.div>
       ))}

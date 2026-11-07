@@ -62,9 +62,31 @@
   @apply font-serif font-light tracking-[-0.02em] text-balance;
 }
 
+@property --section-veil {
+  syntax: '<percentage>';
+  inherits: true;
+  initial-value: 87%;
+}
+
 @layer base {
   :root {
     --section-veil: 87%;
+    transition: --section-veil 0.4s ease-in-out;
+  }
+
+  /* While the camera flies, the page steps aside so the whole screen belongs to the world. */
+  :root[data-travelling] {
+    --section-veil: 0%;
+  }
+
+  main > section > *,
+  footer {
+    transition: opacity 0.45s ease-in-out;
+  }
+
+  :root[data-travelling] main > section > *,
+  :root[data-travelling] footer {
+    opacity: 0;
   }
 
   html {

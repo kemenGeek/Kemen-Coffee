@@ -15,6 +15,7 @@ export function Hero() {
   return (
     <section
       id="home"
+      data-scene-stage
       data-theme="dark"
       aria-label="Welcome to KEMEN COFFEE"
       className="relative isolate flex h-svh min-h-[40rem] items-end overflow-hidden text-cream"

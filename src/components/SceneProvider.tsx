@@ -1,12 +1,22 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { navLinks } from '../data/navigation'
 import { DEFAULT_SCENE_ID, isSceneId, type SceneId } from '../data/scenes'
+import { useActiveSection } from '../hooks/useActiveSection'
 import { SceneContext, type SceneSelection } from '../hooks/useScene'
 
 const SCROLL_SETTLED_MS = 200
+const SECTION_IDS = navLinks.map(({ id }) => id)
 
-/** Scenes change only when someone navigates. Nothing here listens to scroll position. */
+/**
+ * Clicking a link and scrolling to a section lead to the same scene and the same camera journey.
+ * Reaching a section starts its journey; the scrollbar never scrubs the animation itself.
+ */
 export function SceneProvider({ children }: { children: ReactNode }) {
-  const [selection, setSelection] = useState<SceneSelection>({ id: DEFAULT_SCENE_ID, count: 0 })
+  const [selection, setSelection] = useState<SceneSelection>({
+    id: DEFAULT_SCENE_ID,
+    count: 0,
+    via: 'load',
+  })
   const [navigatingTo, setNavigatingTo] = useState<SceneId | null>(null)
   const settleTimerRef = useRef<number | undefined>(undefined)
 
@@ -17,7 +27,9 @@ export function SceneProvider({ children }: { children: ReactNode }) {
 
   const selectScene = useCallback(
     (id: SceneId) => {
-      setSelection((current) => (current.id === id ? current : { id, count: current.count + 1 }))
+      setSelection((current) =>
+        current.id === id ? current : { id, count: current.count + 1, via: 'click' },
+      )
       setNavigatingTo(id)
       waitForScrollToSettle()
     },
@@ -63,6 +75,21 @@ export function SceneProvider({ children }: { children: ReactNode }) {
 
     return () => window.removeEventListener('scroll', waitForScrollToSettle)
   }, [navigatingTo, waitForScrollToSettle])
+
+  // A click's own scroll passes other sections on the way, and those must not pull the camera.
+  const scrolledToId = useActiveSection(SECTION_IDS)
+
+  useEffect(() => {
+    if (navigatingTo || !isSceneId(scrolledToId)) {
+      return
+    }
+
+    setSelection((current) =>
+      current.id === scrolledToId
+        ? current
+        : { id: scrolledToId, count: current.count + 1, via: 'scroll' },
+    )
+  }, [scrolledToId, navigatingTo])
 
   const value = useMemo(
     () => ({ selection, navigatingTo, selectScene }),

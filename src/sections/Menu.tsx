@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
+import { MenuStage } from '../components/MenuStage'
 import { ProductCard } from '../components/ProductCard'
 import { Reveal } from '../components/Reveal'
-import { SectionHeading } from '../components/SectionHeading'
 import { drinks, menuFilters } from '../data/menu'
 import { cn } from '../lib/cn'
 import { easePremium } from '../lib/motion'
@@ -14,20 +14,11 @@ export function Menu() {
     activeFilter === 'all' ? drinks : drinks.filter(({ category }) => category === activeFilter)
 
   return (
-    <section id="menu" aria-labelledby="menu-heading" className="section-pad bg-cream/(--section-veil)">
+    <section id="menu" aria-labelledby="menu-heading">
+      <MenuStage />
+      <div className="section-pad rounded-t-[2rem] md:rounded-t-[3rem] bg-cream/(--section-veil)">
       <div className="container-x">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-          <SectionHeading
-            id="menu-heading"
-            index="02"
-            label="The Menu"
-            title={
-              <>
-                Our Signature <em className="font-normal italic">Brews</em>
-              </>
-            }
-          />
-
+        <div className="flex justify-start lg:justify-end">
           <Reveal delay={0.1}>
             <div
               role="group"
@@ -93,6 +84,7 @@ export function Menu() {
         <p className="mt-16 text-sm text-coffee">
           Sample menu and prices, shown for demonstration. Online ordering is not available.
         </p>
+      </div>
       </div>
     </section>
   )

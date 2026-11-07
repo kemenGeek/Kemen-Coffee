@@ -5,6 +5,8 @@ export interface SceneSelection {
   id: SceneId
   /** Counts every change of scene, so each transition has its own identity. */
   count: number
+  /** A click clears the page for the flight. Scrolling keeps the page in place while it reads. */
+  via: 'load' | 'click' | 'scroll'
 }
 
 interface SceneContextValue {
