@@ -2,6 +2,8 @@
 
 **Brewed with Passion. Served with Purpose.**
 
+**Live site:** <https://kemengeek.github.io/Kemen-Coffee/>
+
 A premium, responsive, single-page marketing website for KEMEN COFFEE, a fictional coffee house brand. It is a static front-end showcase focused on visual design, typography, and smooth interaction.
 
 There is no backend, database, authentication, API, payment processing, or real ordering. All content is stored locally in the project, and menu items, prices, reviews, and contact details are sample content.
@@ -64,6 +66,10 @@ Vite prints the local address when it starts, usually <http://localhost:5173>.
 | `npm run dev` | Start the development server |
 | `npm run build` | Type-check and create a production build in `dist/` |
 | `npm run preview` | Serve the production build locally |
+
+## Deployment
+
+Every push to `main` builds the site and publishes it to GitHub Pages through `.github/workflows/deploy.yml`.
 
 ## Project Structure
 
