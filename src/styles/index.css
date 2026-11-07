@@ -1,0 +1,113 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-espresso: #3b241c;
+  --color-espresso-deep: #24140f;
+  --color-coffee: #6f4e37;
+  --color-cream: #f5ebdd;
+  --color-cream-light: #fbf6ee;
+  --color-beige: #d8c3a5;
+  --color-charcoal: #1c1c1c;
+
+  --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --shadow-soft: 0 24px 56px -32px rgb(59 36 28 / 0.38);
+  --shadow-lift: 0 36px 72px -30px rgb(59 36 28 / 0.55);
+
+  --animate-stamp: stamp-rotate 36s linear infinite;
+  --animate-scroll-cue: scroll-cue 2.6s var(--ease-premium) infinite;
+
+  @keyframes stamp-rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes scroll-cue {
+    0% {
+      transform: scaleY(0);
+      transform-origin: top;
+    }
+    45% {
+      transform: scaleY(1);
+      transform-origin: top;
+    }
+    55% {
+      transform: scaleY(1);
+      transform-origin: bottom;
+    }
+    100% {
+      transform: scaleY(0);
+      transform-origin: bottom;
+    }
+  }
+}
+
+@utility container-x {
+  @apply mx-auto w-full max-w-[1360px] px-6 md:px-10 lg:px-14;
+}
+
+@utility section-pad {
+  @apply py-24 md:py-32 lg:py-40;
+}
+
+@utility eyebrow {
+  @apply font-sans text-[0.7rem] font-semibold tracking-[0.26em] uppercase;
+}
+
+@utility display-heading {
+  @apply font-serif font-light tracking-[-0.02em] text-balance;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-cream-light font-sans text-charcoal antialiased;
+    overflow-x: clip;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background-color: var(--color-coffee);
+    color: var(--color-cream);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-coffee);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  [data-theme='dark'] :focus-visible {
+    outline-color: var(--color-cream);
+  }
+
+  main:focus {
+    outline: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

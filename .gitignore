@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+*.tsbuildinfo
+
+# Environment and credentials
+.env
+.env.*
+*.local
+*.pem
+*.key
+credentials*.json
+secrets*.json
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
+*.swp
