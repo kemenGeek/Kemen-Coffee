@@ -10,6 +10,21 @@ export interface Photo {
   focus?: string
 }
 
+export interface VideoScene {
+  kind: 'video'
+  video: string
+  poster: string
+  /** Frames the footage, which differs between wide screens and portrait phones. */
+  className: string
+}
+
+export interface CollageScene {
+  kind: 'collage'
+  photos: Photo[]
+}
+
+export type Scene = VideoScene | CollageScene
+
 export interface NavLink {
   id: string
   label: string

@@ -63,6 +63,10 @@
 }
 
 @layer base {
+  :root {
+    --section-veil: 87%;
+  }
+
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5.5rem;
@@ -70,7 +74,7 @@
   }
 
   body {
-    @apply bg-cream-light font-sans text-charcoal antialiased;
+    @apply bg-espresso-deep font-sans text-charcoal antialiased;
     overflow-x: clip;
   }
 

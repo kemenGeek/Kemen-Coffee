@@ -14,7 +14,7 @@ export function Menu() {
     activeFilter === 'all' ? drinks : drinks.filter(({ category }) => category === activeFilter)
 
   return (
-    <section id="menu" aria-labelledby="menu-heading" className="section-pad bg-cream">
+    <section id="menu" aria-labelledby="menu-heading" className="section-pad bg-cream/(--section-veil)">
       <div className="container-x">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading

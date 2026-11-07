@@ -8,7 +8,6 @@ const files = import.meta.glob<string>('../assets/images/*.webp', {
 
 const STANDARD_WIDTHS = [640, 1280]
 const WIDE_WIDTHS = [640, 1280, 1800]
-const HERO_WIDTHS = [960, 1600, 2400]
 
 function assetUrl(name: string, width: number) {
   const url = files[`../assets/images/${name}-${width}.webp`]
@@ -37,12 +36,6 @@ function photo(
 }
 
 export const images = {
-  hero: photo(
-    'hero-beans',
-    [2400, 1600],
-    'A burlap sack overflowing with dark roasted coffee beans against a shadowy backdrop',
-    { widths: HERO_WIDTHS, focus: '68% 50%' },
-  ),
   about: photo(
     'about-barista',
     [2400, 3600],

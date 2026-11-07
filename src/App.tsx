@@ -1,6 +1,8 @@
 import { MotionConfig } from 'motion/react'
 import { BackToTop } from './components/BackToTop'
 import { Navbar } from './components/Navbar'
+import { SceneBackground } from './components/SceneBackground'
+import { SceneProvider } from './components/SceneProvider'
 import { ToastProvider } from './components/ToastProvider'
 import { About } from './sections/About'
 import { Contact } from './sections/Contact'
@@ -14,26 +16,29 @@ import { Testimonials } from './sections/Testimonials'
 export default function App() {
   return (
     <MotionConfig reducedMotion="user">
-      <ToastProvider>
-        <a
-          href="#main"
-          className="sr-only rounded-full bg-cream px-5 py-3 text-sm font-semibold text-espresso focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60]"
-        >
-          Skip to content
-        </a>
-        <Navbar />
-        <main id="main" tabIndex={-1}>
-          <Hero />
-          <About />
-          <Menu />
-          <Experience />
-          <Gallery />
-          <Testimonials />
-          <Contact />
-        </main>
-        <Footer />
-        <BackToTop />
-      </ToastProvider>
+      <SceneProvider>
+        <ToastProvider>
+          <SceneBackground />
+          <a
+            href="#main"
+            className="sr-only rounded-full bg-cream px-5 py-3 text-sm font-semibold text-espresso focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60]"
+          >
+            Skip to content
+          </a>
+          <Navbar />
+          <main id="main" tabIndex={-1}>
+            <Hero />
+            <About />
+            <Menu />
+            <Experience />
+            <Gallery />
+            <Testimonials />
+            <Contact />
+          </main>
+          <Footer />
+          <BackToTop />
+        </ToastProvider>
+      </SceneProvider>
     </MotionConfig>
   )
 }

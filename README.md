@@ -10,7 +10,8 @@ There is no backend, database, authentication, API, payment processing, or real 
 
 - Sticky navigation that turns solid on scroll, with active section indicators and smooth anchor scrolling
 - Full-screen mobile navigation with focus handling and scroll lock
-- Hero with editorial typography, image zoom, and a scroll indicator
+- Hero with editorial typography and a scroll indicator
+- Cinematic background that crossfades to a different scene when a navigation link is clicked, and is never driven by scrolling
 - Six-item signature menu with category filters that run on local data
 - Editorial Experience section with subtle image parallax
 - Masonry-inspired gallery with a lightbox supporting keyboard and swipe navigation
@@ -23,7 +24,7 @@ There is no backend, database, authentication, API, payment processing, or real 
 - Semantic HTML with a skip link and visible keyboard focus states
 - Focus trapping in dialogs, with focus returned on close
 - Meaningful image alt text
-- `prefers-reduced-motion` support that disables smooth scrolling, parallax, and looping animation
+- `prefers-reduced-motion` support that disables smooth scrolling, parallax, and looping animation, and shows still frames instead of background video
 - Responsive layouts for desktop, laptop, tablet, and mobile
 
 ## Tech Stack
@@ -62,6 +63,7 @@ Vite prints the local address when it starts, usually <http://localhost:5173>.
 public/             Favicon
 src/
   assets/images/    Optimized local WebP photography
+  assets/scenes/    Background video loops and their posters
   components/       Reusable UI components
   data/             Hardcoded site content
   hooks/            Reusable React hooks
@@ -81,7 +83,6 @@ Photos are stored locally in several sizes. They are stock images used as sample
 
 | Asset | Used in | Source |
 | --- | --- | --- |
-| `hero-beans` | Hero background | [Unsplash](https://images.unsplash.com/photo-1524350876685-274059332603) |
 | `about-barista` | About | [Unsplash](https://unsplash.com/photos/2z3MOB3kfJU) |
 | `menu-signature-latte` | Kemen Signature Latte | [Unsplash](https://images.unsplash.com/photo-1572442388796-11668a67e53d) |
 | `menu-spanish-latte` | Spanish Latte | [Unsplash](https://images.unsplash.com/photo-1517701604599-bb29b565090c) |
@@ -105,6 +106,19 @@ Photos are stored locally in several sizes. They are stock images used as sample
 
 Unsplash images are used under the [Unsplash License](https://unsplash.com/license).
 
+## Background Video
+
+Each navigation link has its own background scene, defined in `src/data/scenes.ts`. Clicking a link changes the scene, and scrolling never does. Four scenes are short silent video loops, and the Gallery scene is a slow composition of the site's own photographs.
+
+| Scene | Asset | Source |
+| --- | --- | --- |
+| Home | `home.mp4` | [Mixkit](https://mixkit.co/free-stock-video/demonstration-video-of-a-steaming-cup-of-coffee-43935/) |
+| About | `about.mp4` | [Mixkit](https://mixkit.co/free-stock-video/customers-in-a-minimalist-style-restaurant-4385/) |
+| Menu | `menu.mp4` | [Mixkit](https://mixkit.co/free-stock-video/filling-a-white-cup-of-coffee-236/) |
+| Contact | `contact.mp4` | [Mixkit](https://mixkit.co/free-stock-video/woman-drinking-coffee-in-a-cafe-223/) |
+
+The clips are trimmed, cropped, and re-encoded so they loop cleanly. They are used under the [Mixkit Stock Video Free License](https://mixkit.co/license/#videoFree), and they do not show a real KEMEN COFFEE location.
+
 ## Before Going Live
 
-Replace the sample menu, prices, testimonials, and contact details, add the real social media links, and swap in your own photography.
+Replace the sample menu, prices, testimonials, and contact details, add the real social media links, and swap in your own photography and video.

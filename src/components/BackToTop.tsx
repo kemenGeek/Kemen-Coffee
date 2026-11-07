@@ -1,5 +1,6 @@
 import { ArrowUp } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
+import { useScene } from '../hooks/useScene'
 import { useScrollPast } from '../hooks/useScrollPast'
 import { easePremium } from '../lib/motion'
 
@@ -7,8 +8,10 @@ const SHOW_AFTER_PX = 720
 
 export function BackToTop() {
   const visible = useScrollPast(SHOW_AFTER_PX)
+  const { selectScene } = useScene()
 
   const handleClick = () => {
+    selectScene('home')
     window.scrollTo({ top: 0 })
     document.getElementById('brand-link')?.focus({ preventScroll: true })
   }

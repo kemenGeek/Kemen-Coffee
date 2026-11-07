@@ -10,7 +10,7 @@ export function Experience() {
       id="experience"
       data-theme="dark"
       aria-labelledby="experience-heading"
-      className="section-pad overflow-clip bg-espresso text-cream"
+      className="section-pad overflow-clip bg-espresso/(--section-veil) text-cream"
     >
       <div className="container-x">
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end">

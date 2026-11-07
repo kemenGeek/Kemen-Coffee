@@ -9,7 +9,7 @@ export function About() {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="section-pad overflow-clip bg-cream-light"
+      className="section-pad overflow-clip bg-cream-light/(--section-veil)"
     >
       <div className="container-x grid items-center gap-16 lg:grid-cols-12 lg:gap-0">
         <Reveal className="relative mx-auto w-full max-w-lg lg:col-span-5 lg:max-w-none">

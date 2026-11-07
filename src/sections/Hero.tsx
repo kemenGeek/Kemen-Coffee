@@ -1,9 +1,7 @@
-import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
+import { motion } from 'motion/react'
 import type { ReactNode } from 'react'
 import { LinkButton } from '../components/LinkButton'
-import { Picture } from '../components/Picture'
 import { Stamp } from '../components/Stamp'
-import { images } from '../data/images'
 import { easePremium } from '../lib/motion'
 
 const HEADLINE_LINES: ReactNode[] = [
@@ -14,38 +12,16 @@ const HEADLINE_LINES: ReactNode[] = [
 ]
 
 export function Hero() {
-  const reduceMotion = useReducedMotion()
-  const { scrollY } = useScroll()
-  const imageY = useTransform(scrollY, [0, 900], [0, 130])
-
   return (
     <section
       id="home"
       data-theme="dark"
       aria-label="Welcome to KEMEN COFFEE"
-      className="relative isolate flex h-svh min-h-[40rem] items-end overflow-hidden bg-espresso-deep text-cream"
+      className="relative isolate flex h-svh min-h-[40rem] items-end overflow-hidden text-cream"
     >
-      <motion.div
-        style={reduceMotion ? undefined : { y: imageY }}
-        className="absolute inset-x-0 -top-[30%] bottom-0 -z-20 lg:-top-[4%] lg:-bottom-[16%]"
-      >
-        <motion.div
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 2.8, ease: easePremium }}
-          className="size-full"
-        >
-          <Picture
-            photo={images.hero}
-            sizes="(max-width: 1023px) 180vh, 100vw"
-            priority
-            className="size-full object-cover"
-          />
-        </motion.div>
-      </motion.div>
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-gradient-to-t from-espresso-deep from-30% via-espresso-deep/85 via-60% to-espresso-deep/25 lg:bg-gradient-to-r lg:from-espresso-deep/95 lg:from-0% lg:via-espresso-deep/60 lg:via-50% lg:to-transparent"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-espresso-deep from-30% via-espresso-deep/80 via-60% to-espresso-deep/15 lg:bg-gradient-to-r lg:from-espresso-deep/95 lg:from-0% lg:via-espresso-deep/60 lg:via-50% lg:to-transparent"
       />
       <div
         aria-hidden

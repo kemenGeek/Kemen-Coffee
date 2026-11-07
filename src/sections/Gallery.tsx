@@ -11,7 +11,7 @@ export function Gallery() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section id="gallery" aria-labelledby="gallery-heading" className="section-pad bg-cream-light">
+    <section id="gallery" aria-labelledby="gallery-heading" className="section-pad bg-cream-light/(--section-veil)">
       <div className="container-x">
         <SectionHeading
           id="gallery-heading"

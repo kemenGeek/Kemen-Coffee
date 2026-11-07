@@ -64,7 +64,10 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col gap-3 border-t border-cream/15 pt-6 text-sm text-cream/70 md:flex-row md:justify-between">
           <p>© {new Date().getFullYear()} KEMEN COFFEE. All rights reserved.</p>
-          <p>Demo website with sample content. Photography from Unsplash and Wikimedia Commons.</p>
+          <p>
+            Demo website with sample content. Photography from Unsplash and Wikimedia Commons.
+            Video from Mixkit.
+          </p>
         </div>
       </div>
     </footer>

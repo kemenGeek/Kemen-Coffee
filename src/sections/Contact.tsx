@@ -5,7 +5,7 @@ import { contactDetails } from '../data/contact'
 
 export function Contact() {
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="section-pad bg-cream-light">
+    <section id="contact" aria-labelledby="contact-heading" className="section-pad bg-cream-light/(--section-veil)">
       <div className="container-x grid gap-14 lg:grid-cols-12 lg:gap-0">
         <div className="lg:col-span-5">
           <SectionHeading

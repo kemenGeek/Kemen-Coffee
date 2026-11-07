@@ -3,6 +3,7 @@ import { motion } from 'motion/react'
 import { useState } from 'react'
 import { navLinks } from '../data/navigation'
 import { useActiveSection } from '../hooks/useActiveSection'
+import { useScene } from '../hooks/useScene'
 import { useScrollPast } from '../hooks/useScrollPast'
 import { cn } from '../lib/cn'
 import { LinkButton } from './LinkButton'
@@ -14,7 +15,9 @@ const SOLID_AFTER_PX = 32
 
 export function Navbar() {
   const solid = useScrollPast(SOLID_AFTER_PX)
-  const activeId = useActiveSection(SECTION_IDS)
+  const scrolledToId = useActiveSection(SECTION_IDS)
+  const { navigatingTo } = useScene()
+  const activeId = navigatingTo ?? scrolledToId
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
